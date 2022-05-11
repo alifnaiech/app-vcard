@@ -5,14 +5,16 @@ import { CardProfileComponent } from "src/app/pages/profile/components/card-prof
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 const routes = [
     {
-        path: '',
+        path: ':owner',
         component: CardProfileComponent
     }
 ]
 @NgModule({
-    imports: [CommonModule, RouterModule.forChild(routes), MatListModule, MatDividerModule, FontAwesomeModule],
+    imports: [CommonModule, RouterModule.forChild(routes), MatListModule, MatDividerModule, MatProgressSpinnerModule, FontAwesomeModule],
     declarations: [CardProfileComponent]
 })
 export class ProfileModule{

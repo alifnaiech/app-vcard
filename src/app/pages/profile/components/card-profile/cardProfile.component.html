@@ -1,96 +1,102 @@
-<header style="background: #3f51b5; height: 300px; color: #ffff">
-    <div style="display: grid; place-content: center; align-items: center;">
-        <div style="margin-top: 40px; text-align: center;">
-            <img src="https://qrcgcustomers.s3-eu-west-1.amazonaws.com/account784477/25253401_1.png?0.26187447542057596" style="border-radius: 50%; height: 100px;">
-        </div>
-        <div style="text-align: center;">
-            <h2>Simone Covre</h2>
-            <h4 style="margin-bottom: 36px; color: #fffefe; opacity: 0.75; font-weight: 300;">Software Analyst</h4>
-        </div>
-        <div style="display: grid; grid-template-columns: auto auto auto; grid-gap: 50px; text-align: center;">
-            <div>
-                <a style="display: grid; place-content: center; place-items: center; text-align: center;">
-                    <fa-icon [icon]="faPhone"></fa-icon>
-                    <small>CHIAMA</small>
-                </a>
-            </div>
-            <div>
-                <a style="display: grid; place-content: center; place-items: center;">
-                    <fa-icon [icon]="faPaperPlane"></fa-icon>
-                    <small>EMAIL</small>
-                </a>
-            </div>
-            <div>
-                <a style="display: grid; place-content: center; place-items: center;">
-                    <fa-icon [icon]="faLocationDot"></fa-icon>
-                    <small>INDICAZIONI</small>
-                </a>
-            </div>
-        </div>
-    </div>
-</header>
-
-<div style="margin-top: 10px;">
-<div style="color: #323032">
-    <div style="display: grid; grid-template-columns: auto auto auto auto; padding: 10px 0;">
+<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" *ngIf="loader">
+    <mat-spinner></mat-spinner>
+  </div>
+<div class="container-fluid bg-image" *ngIf="!loader">
+    <header style="background: #0F526D; height: 290px; color: #ffff">
         <div style="display: grid; place-content: center; place-items: center;">
-        <fa-icon [icon]="faPhone" style="color: #b3b4bb;"></fa-icon>
+            <div style="margin-top: 50px; margin-bottom: 25px;border-radius: 50%; width: 120px; height: 120px; display: grid; align-items: center; text-align: center; background-color: #6AD2C9;">
+                <h1 style="font-size: 50px;">{{ nameOwner }}</h1>
+                <!-- <img src="https://qrcgcustomers.s3-eu-west-1.amazonaws.com/account784477/25253401_1.png?0.26187447542057596" style="border-radius: 50%; height: 100px;"> -->
+            </div>
+            <div style="text-align: center; margin: 0!important;">
+                <h2>{{vcardProfile$['fns'][0].fn1}}</h2>
+                <!-- <h4 style="margin-bottom: 36px; color: #fffefe; opacity: 0.75; font-weight: 300;">Software Analyst</h4> -->
+            </div>
+            <div style="display: grid; grid-template-columns: auto auto; grid-gap: 50px; text-align: center;">
+                <div>
+                    <a [href]="'https://vcardapi.forj.it/api/VCard/vcf/basic/'+vcardOwnerId" target="_blank " style="display: grid; place-content: center; place-items: center; text-align: center; color: #ffff; text-decoration: none;">
+                        <fa-icon [icon]="faAddressCard"></fa-icon>
+                        <small>Card</small>
+                    </a>
+                </div>
+                <div>
+                    <a style="display: grid; place-content: center; place-items: center;">
+                        <fa-icon [icon]="faQrcode"></fa-icon>
+                        <small>Qr Code</small>
+                    </a>
+                </div>
+                <!-- <div>
+                    <a style="display: grid; place-content: center; place-items: center;">
+                        <fa-icon [icon]="faLocationDot"></fa-icon>
+                        <small>INDICAZIONI</small>
+                    </a>
+                </div> -->
+            </div>
         </div>
-        <div>
-        <h4 style="margin-bottom: 0px;">
-            <a>+393922609458</a>
-        </h4>
-        <small style="color: #b3b4bb;">Cellulare</small>
+    </header>
+    
+    <div style="margin-top: 10px;">
+    <div style="color: #323032">
+        <div style="display: grid; grid-template-columns: auto auto auto auto; padding: 10px 0;">
+            <div style="display: grid; place-content: center; place-items: center;">
+            <fa-icon [icon]="faPhone" style="color: #b3b4bb;"></fa-icon>
+            </div>
+            <div>
+            <h4 style="margin-bottom: 0px;">
+                <a style="color: #000000" [href]="'tel:' + cel.tel1" target="_blank" *ngFor="let cel of vcardProfile$['tels']">{{cel.tel1}}<br></a>
+            </h4>
+            <small style="color: #b3b4bb;">Cellulare</small>
+            </div>
         </div>
-    </div>
-    <mat-divider></mat-divider>
-    <div style="display: grid; grid-template-columns: auto auto auto auto; padding: 10px 0;">
-    <div style="display: grid; place-content: center; place-items: center;">
-        <fa-icon [icon]="faEnvelope" style="color: #b3b4bb;"></fa-icon>
-    </div>
-    <div>
-        <h4 style="margin-bottom: 0px;">
-            <a>s.covre@forj.it</a>
-        </h4>
-        <small style="color: #b3b4bb;">Email</small>
-    </div>
-    </div>
-    <mat-divider></mat-divider>
-    <div style="display: grid; grid-template-columns: auto auto auto auto; padding: 10px 0;">
+        <mat-divider></mat-divider>
+        <div style="display: grid; grid-template-columns: auto auto auto auto; padding: 10px 0;">
         <div style="display: grid; place-content: center; place-items: center;">
-            <fa-icon [icon]="faBriefcase" style="color: #b3b4bb;"></fa-icon>
+            <fa-icon [icon]="faEnvelope" style="color: #b3b4bb;"></fa-icon>
         </div>
         <div>
             <h4 style="margin-bottom: 0px;">
-                <a>ForJ</a>
+                <a>{{vcardProfile$['emails'][0]['email1']}}</a>
             </h4>
-            <small style="color: #b3b4bb;">Software Analyst</small>
+            <small style="color: #b3b4bb;">Email</small>
         </div>
+        </div>
+        <mat-divider></mat-divider>
+        <!-- <div style="display: grid; grid-template-columns: auto auto auto auto; padding: 10px 0;">
+            <div style="display: grid; place-content: center; place-items: center;">
+                <fa-icon [icon]="faBriefcase" style="color: #b3b4bb;"></fa-icon>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 0px;">
+                    <a>ForJ</a>
+                </h4>
+                <small style="color: #b3b4bb;">Software Analyst</small>
+            </div>
+        </div>
+        <mat-divider></mat-divider> -->
+        <div style="display: grid; grid-template-columns:  auto auto auto; padding: 10px 0;">
+            <div style="display: grid; place-content: center; place-items: center;">
+                <fa-icon [icon]="faLocationDot" style="color: #b3b4bb;"></fa-icon>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 0px;">
+                    <a>{{vcardProfile$['adrs'][0]['adrComponentStreet']}}<br>{{vcardProfile$['adrs'][0]['adrComponentLocality']}}, {{vcardProfile$['adrs'][0]['adrComponentRegion']}} {{vcardProfile$['adrs'][0]['adrComponentCode']}}<br>{{vcardProfile$['adrs'][0]['adrComponentCountry']}}</a>
+                </h4>
+                <small style="color: #b3b4bb;">indirizzo</small>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <!-- <div style="display: grid; grid-template-columns: auto auto auto auto; padding: 10px 0;">
+            <div style="display: grid; place-content: center; place-items: center;">
+                <fa-icon [icon]="faGlobe" style="color: #b3b4bb;"></fa-icon>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 0px;">
+                    <a>www.forj.it</a>
+                </h4>
+                <small style="color: #b3b4bb;">Pagina Web</small>
+            </div>
+        </div> -->
     </div>
-    <mat-divider></mat-divider>
-    <div style="display: grid; grid-template-columns:  auto auto auto; padding: 10px 0;">
-        <div style="display: grid; place-content: center; place-items: center;">
-            <fa-icon [icon]="faLocationDot" style="color: #b3b4bb;"></fa-icon>
-        </div>
-        <div>
-            <h4 style="margin-bottom: 0px;">
-                <a>Viale Italia 118<br> La Spezia, Liguria 19125<br> Italia</a>
-            </h4>
-            <small style="color: #b3b4bb;">Indirizzio</small>
-        </div>
+    
     </div>
-    <mat-divider></mat-divider>
-    <div style="display: grid; grid-template-columns: auto auto auto auto; padding: 10px 0;">
-        <div style="display: grid; place-content: center; place-items: center;">
-            <fa-icon [icon]="faGlobe" style="color: #b3b4bb;"></fa-icon>
-        </div>
-        <div>
-            <h4 style="margin-bottom: 0px;">
-                <a>www.forj.it</a>
-            </h4>
-            <small style="color: #b3b4bb;">Pagina Web</small>
-        </div>
     </div>
-</div>
-
-</div>
